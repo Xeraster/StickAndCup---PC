@@ -5,6 +5,7 @@
 #include "color.h"
 #include "LTimer.h"
 #include "nameGenerator.h"
+#include "planet.h"
 #include "simpleStarSystem.h"
 #include "starSystem.h"
 
@@ -41,7 +42,7 @@ bool canClickMouse = true;
 
 int countedFrames = 0;
 
-nameGenerator nameRandomizerObject;
+nameGenerator *nameRandomizerObject = new nameGenerator;
 
 void update(SDL_Renderer *ren, SDL_Window *win);
 

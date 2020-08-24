@@ -13,7 +13,7 @@ class starSystem
 public:
 	starSystem();
 
-	starSystem(uint32_t seed, nameGenerator randomNameObject);
+	starSystem(uint32_t seed, nameGenerator *randomNameObject);
 
 	starSystem(color whatColor, int size);
 

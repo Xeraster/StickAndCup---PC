@@ -3,7 +3,7 @@ starSystem :: starSystem()
 
 }
 
-starSystem :: starSystem(uint32_t seed, nameGenerator randomNameObject)
+starSystem :: starSystem(uint32_t seed, nameGenerator *randomNameObject)
 {
 	color *colorArray = new color[6];
 	colorArray[0] = color(255,0,0,255); 	//red
@@ -65,7 +65,7 @@ starSystem :: starSystem(uint32_t seed, nameGenerator randomNameObject)
 		starType = "K";
 	}
 
-	starName = randomNameObject.generateStarName(seed);
+	starName = randomNameObject->generateStarName(seed);
 
 
 	delete[] colorArray;
