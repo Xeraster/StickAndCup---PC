@@ -67,6 +67,8 @@ starSystem :: starSystem(uint32_t seed, nameGenerator *randomNameObject)
 
 	starName = randomNameObject->generateStarName(seed);
 
+	numPlanets = betterRand(seed + 999999937)%12;
+
 
 	delete[] colorArray;
 }

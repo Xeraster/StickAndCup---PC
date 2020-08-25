@@ -71,13 +71,14 @@ nameGenerator :: nameGenerator()
 	OneLetterWordSections[18] = "x";
 	OneLetterWordSections[19] = "z";
 
-	TwoLetterWordSections = new string[6];
+	TwoLetterWordSections = new string[7];
 	TwoLetterWordSections[0] = "zh";
 	TwoLetterWordSections[1] = "th";
 	TwoLetterWordSections[2] = "tr";
 	TwoLetterWordSections[3] = "chr";
 	TwoLetterWordSections[4] = "fl";
 	TwoLetterWordSections[5] = "bl";
+	TwoLetterWordSections[5] = "pl";
 
 	vowels = new string[6];
 	vowels[0] = "a";
@@ -86,6 +87,24 @@ nameGenerator :: nameGenerator()
 	vowels[3] = "o";
 	vowels[4] = "u";
 	vowels[5] = "y";
+
+	doublevowels = new string[16];
+	doublevowels[0] = "ae";
+	doublevowels[1] = "ea";
+	doublevowels[2] = "ai";
+	doublevowels[3] = "au";
+	doublevowels[4] = "eu";
+	doublevowels[5] = "ei";
+	doublevowels[6] = "eo";
+	doublevowels[7] = "ia";
+	doublevowels[8] = "ie";
+	doublevowels[9] = "ii";
+	doublevowels[10] = "io";
+	doublevowels[11] = "oa";
+	doublevowels[12] = "oo";
+	doublevowels[13] = "ou";
+	doublevowels[14] = "ua";
+	doublevowels[15] = "ui";
 
 	suffixNames = new string[4];
 	suffixNames[0] = "Star";
@@ -188,5 +207,96 @@ string nameGenerator :: generateStarName(uint32_t seed)
 			return result;
 		}
 		//make up a new word
+	}
+}
+
+string nameGenerator :: generatePlanetName(uint32_t seed)
+{
+		string result;
+		seed++;
+		if (betterRand(seed)%1000 < 333)
+		{	
+			seed++;
+			result+=OneLetterWordSections[betterRand(seed)%19];
+			for(int i = 0; i < (betterRand(seed)%10)+1; i++)
+			{
+				seed++;
+				result+=randomVowelString(seed);
+				seed++;
+				if (betterRand(seed)%100 < 50)
+				{
+					result+=OneLetterWordSections[betterRand(seed)%19];
+				}
+				else
+				{
+					result+=TwoLetterWordSections[betterRand(seed)%5];
+				}
+				seed++;
+			}
+			result[0] = toupper(result[0]);
+			return result;
+		}
+		else if (betterRand(seed)%1000 > 666)
+		{
+			seed++;
+			result+=TwoLetterWordSections[betterRand(seed)%5];
+			//while (betterRand(seed)%500 > 80)
+			for(int i = 0; i < (betterRand(seed)%10)+1; i++)
+			{
+				seed++;
+				result+=randomVowelString(seed);
+				seed++;
+				if (betterRand(seed)%100 < 50)
+				{
+					result+=OneLetterWordSections[betterRand(seed)%19];
+				}
+				else
+				{
+					result+=TwoLetterWordSections[betterRand(seed)%5];
+				}
+				seed++;
+			}
+			result[0] = toupper(result[0]);
+			return result;
+		}
+		else
+		{
+			seed++;
+			result+=vowels[betterRand(seed)%5];
+			//while (betterRand(seed)%500 > 80)
+			for(int i = 0; i < (betterRand(seed)%10)+1; i++)
+			{
+				seed++;
+				if (betterRand(seed)%100 < 50)
+				{
+					result+=OneLetterWordSections[betterRand(seed)%19];
+				}
+				else
+				{
+					result+=TwoLetterWordSections[betterRand(seed)%5];
+				}
+				seed++;
+				result+=randomVowelString(seed);
+				seed++;
+			}
+
+			result[0] = toupper(result[0]);
+			return result;
+		}
+		//make up a new word
+}
+
+string nameGenerator :: randomVowelString(uint32_t seed)
+{
+	//seed+=999999941;
+	if (betterRand(seed)%1000 > 750)
+	{
+		seed++;
+		return vowels[betterRand(seed)%5];
+	}
+	else
+	{
+		seed++;
+		return doublevowels[betterRand(seed)%15];
 	}
 }

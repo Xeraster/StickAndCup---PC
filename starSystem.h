@@ -28,6 +28,9 @@ public:
 	double getMass() { return mass; }
 
 	string getName() { return starName; }
+
+	int getPlanets() { return numPlanets; }
+
 protected:
 	int size;
 	int temp;
@@ -35,6 +38,7 @@ protected:
 	string starType;
 	color starColor;
 	string starName;
+	int numPlanets;
 
 };
 

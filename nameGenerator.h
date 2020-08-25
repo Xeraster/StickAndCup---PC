@@ -15,12 +15,17 @@ public:
 
 	string generateStarName(uint32_t seed);
 
+	string generatePlanetName(uint32_t seed);
+
+	string randomVowelString(uint32_t seed);
+
 protected:
 	string *personNames;
 	string *prefixNames;
 	string *TwoLetterWordSections;
 	string *OneLetterWordSections;
 	string *vowels;
+	string *doublevowels;			//right now this is only used for planet names. I may change that depending on how the names generated with this turn out
 	string *suffixNames;
 
 };
